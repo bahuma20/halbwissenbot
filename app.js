@@ -37,7 +37,7 @@ bot.on('text', (msg) => {
   let text = msg.text;
   text = text.toLowerCase();
 
-  if (text.startsWith('chia') || text.indexOf(' chia') !== -1 || text.indexOf('-chia')) {
+  if (text.startsWith('chia') || text.indexOf(' chia') !== -1 || text.indexOf('-chia') !== -1) {
     bot.sendMessage(chatId, 'SUPERFOOD');
   }
 });
