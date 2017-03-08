@@ -30,8 +30,8 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 
-  console.log('===New Message:')
-  console.log(msg);
+  // console.log('===New Message:')
+  // console.log(msg);
 
   if(msg.hasOwnProperty('new_chat_member')) {
     let rand1 = random(0, niceInsults.length-1);
@@ -56,6 +56,6 @@ bot.on('text', (msg) => {
 });
 
 bot.on('===new_chat_participant:', (event) => {
-  console.log('group join event');
-  console.log(event);
+  // console.log('group join event');
+  // console.log(event);
 });
