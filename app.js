@@ -1,28 +1,61 @@
-const restify = require('restify');
-const builder = require('botbuilder');
+const TelegramBot = require('node-telegram-bot-api');
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-//=========================================================
-// Bot Setup
-//=========================================================
+const greetings = require('./greetings.json');
+const niceInsults = require('./niceInsults.json');
 
-// Setup Restify Server
-let server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-  console.log('%s listening to %s', server.name, server.url);
+// replace the value below with the Telegram token you receive from @BotFather
+const token = process.env.TELEGRAM_BOT_TOKEN;
+
+// Create a bot that uses 'polling' to fetch new updates
+const bot = new TelegramBot(token, {polling: true});
+
+// Matches "/echo [whatever]"
+bot.onText(/\/echo (.+)/, (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
+
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+
+  // send back the matched "whatever" to the chat
+  bot.sendMessage(chatId, resp);
 });
 
-// Create chat bot
-let connector = new builder.ChatConnector({
-  appId: process.env.MICROSOFT_APP_ID,
-  appPassword: process.env.MICROSOFT_APP_PASSWORD
+// Listen for any kind of message. There are different kinds of
+// messages.
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+
+  console.log('===New Message:')
+  console.log(msg);
+
+  if(msg.hasOwnProperty('new_chat_member')) {
+    let rand1 = random(0, niceInsults.length-1);
+    let rand2 = random(0, greetings.length-1);
+
+    let niceInsult = niceInsults[rand1];
+    let greeting = greetings[rand2];
+
+    bot.sendMessage(chatId, `Hallo ${msg.new_chat_member.first_name} du ${niceInsult}. ${greeting}`);
+  }
 });
-let bot = new builder.UniversalBot(connector);
-server.post('/api/messages', connector.listen());
 
-//=========================================================
-// Bots Dialogs
-//=========================================================
+bot.on('text', (msg) => {
+  const chatId = msg.chat.id;
 
-bot.dialog('/', function (session) {
-  session.send("Hello World");
+  let text = msg.text;
+  text = text.toLowerCase();
+
+  if (text.startsWith('chia') || text.indexOf(' chia') !== -1 || text.indexOf('-chia')) {
+    bot.sendMessage(chatId, 'SUPERFOOD');
+  }
+});
+
+bot.on('===new_chat_participant:', (event) => {
+  console.log('group join event');
+  console.log(event);
 });
