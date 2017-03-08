@@ -12,8 +12,6 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
-// Listen for any kind of message. There are different kinds of
-// messages.
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 
@@ -21,6 +19,7 @@ bot.on('message', (msg) => {
   // console.log(msg);
 
   if(msg.hasOwnProperty('new_chat_member')) {
+    // GREET NEW USERS
     let rand1 = random(0, niceInsults.length-1);
     let rand2 = random(0, greetings.length-1);
 
@@ -34,6 +33,7 @@ bot.on('message', (msg) => {
 bot.on('text', (msg) => {
   const chatId = msg.chat.id;
 
+  // ANSWER SUPERFOOD TO CHIA MESSAGES
   let text = msg.text;
   text = text.toLowerCase();
 
