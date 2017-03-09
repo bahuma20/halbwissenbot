@@ -32,14 +32,23 @@ bot.on('message', (msg) => {
   // console.log(msg);
 
   if(msg.hasOwnProperty('new_chat_member')) {
-    // GREET NEW USERS
-    let rand1 = random(0, niceInsults.length-1);
-    let rand2 = random(0, greetings.length-1);
 
-    let niceInsult = niceInsults[rand1];
-    let greeting = greetings[rand2];
+    // LOAD INFO ABOUT THE BOT
+    bot.getMe().then(botInfo => {
+      // If the user who joined is the bot himself, don't send a welcome message
+      if (msg.new_chat_member.id === botInfo.id) {
+        return;
+      }
 
-    bot.sendMessage(chatId, `Hallo ${msg.new_chat_member.first_name} du ${niceInsult}. ${greeting}`);
+      // GREET NEW USERS
+      let rand1 = random(0, niceInsults.length-1);
+      let rand2 = random(0, greetings.length-1);
+
+      let niceInsult = niceInsults[rand1];
+      let greeting = greetings[rand2];
+
+      bot.sendMessage(chatId, `Hallo ${msg.new_chat_member.first_name} du ${niceInsult}. ${greeting}`);
+    });
   }
 });
 

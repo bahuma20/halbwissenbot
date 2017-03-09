@@ -13,3 +13,6 @@ Einfach hier auf Github die Datei
 [niceInsults.json](https://github.com/bahuma/halbwissenbot/edit/master/niceInsults.json)
 bzw. [greetings.json](https://github.com/bahuma/halbwissenbot/edit/master/greetings.json)
 bearbeiten.
+
+## Environment Variables
+`TELEGRAM_BOT_TOKEN`
