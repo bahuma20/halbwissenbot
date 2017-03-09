@@ -1,4 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
+
+let app = express();
+
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -63,4 +67,12 @@ bot.on('text', (msg) => {
 bot.on('===new_chat_participant:', (event) => {
   // console.log('group join event');
   // console.log(event);
+});
+
+
+// Start HTTP Server (Heroku requires one)
+app.use(express.static('public'));
+
+let listener = app.listen(process.env.PORT || process.env.port || 3000, function() {
+  console.log(`Express is listening on port ${listener.address().port}`);
 });

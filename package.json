@@ -4,6 +4,7 @@
   "main": "app.js",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.15.2",
     "node-telegram-bot-api": "^0.27.0"
   },
   "scripts": {
