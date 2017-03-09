@@ -13,6 +13,15 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 
 bot.on('message', (msg) => {
+  // DO NOT REPLY TO OLD MESSAGES
+  let currentTime = Date.now() / 1000;
+
+  if (msg.date < currentTime - 60) {
+    // If received message older than a minute, don't reply
+    return;
+  }
+
+
   const chatId = msg.chat.id;
 
   // console.log('===New Message:')
@@ -31,6 +40,15 @@ bot.on('message', (msg) => {
 });
 
 bot.on('text', (msg) => {
+  // DO NOT REPLY TO OLD MESSAGES
+  let currentTime = Date.now() / 1000;
+
+  if (msg.date < currentTime - 60) {
+    // If received message older than a minute, don't reply
+    return;
+  }
+
+
   const chatId = msg.chat.id;
 
   // ANSWER SUPERFOOD TO CHIA MESSAGES
