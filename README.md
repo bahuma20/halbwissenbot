@@ -5,6 +5,8 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 ## Funktionen
 - [x] Chia => SUPERFOOD
 - [x] Automatische Begrüßung mit einer netten Beleidigung
+- [x] Fragt nach einer Tätigkeit in der Automobilbranche
+- [ ] Antwortet auf Fragen an ihn mit "Halts Maul, ich schlafe..."
  
 ## Mithelfen
 Jeder kann diesem Chatbot neue Beleidigungen oder Begrüßungen lernen.

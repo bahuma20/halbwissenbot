@@ -48,6 +48,10 @@ bot.on('message', (msg) => {
       let greeting = greetings[rand2];
 
       bot.sendMessage(chatId, `Hallo ${msg.new_chat_member.first_name} du ${niceInsult}. ${greeting}`);
+
+      setTimeout(function() {
+        bot.sendMessage(chatId, 'Arbeitest du zufällig in der Automobilbranche?');
+      }, 3000)
     });
   }
 });
