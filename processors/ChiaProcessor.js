@@ -6,7 +6,9 @@ class ChiaProcessor extends Processor {
     super(bot);
     let self = this;
 
-    self.on('text', msg => self.onText)
+    self.bot.on('text', msg => {
+      self.onText(msg);
+    })
   }
 
   onText(msg) {
@@ -32,3 +34,5 @@ class ChiaProcessor extends Processor {
     return true;
   }
 }
+
+module.exports = ChiaProcessor;
