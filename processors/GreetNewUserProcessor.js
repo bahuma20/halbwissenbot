@@ -18,10 +18,25 @@ class GreetNewUserProcessor extends Processor {
   }
 
   onNewChatParticipant(msg) {
-    console.log('new user joined');
-    console.log(msg);
+    let self = this;
 
-    this.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${this.randomValue(this.niceInsults)}. ${this.randomValue(this.greetings)}`);
+    if (self.shouldReply(msg)) {
+      self.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${self.randomValue(this.niceInsults)}. ${self.randomValue(this.greetings)}`);
+
+      setTimeout(function() {
+        self.bot.sendMessage(msg.chat.id, 'Arbeitest du zufällig in der Automobilbranche?');
+      }, 3000);
+    }
+
+  }
+
+  shouldReply(msg) {
+    // DO NOT REPLY WHEN THE USER WHO JOINED IS THE BOT HIMSELF
+    if (msg.new_chat_member.id === this.botId) {
+      return false;
+    }
+
+    return true;
   }
 
   randomValue(array) {
