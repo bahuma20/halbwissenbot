@@ -10,6 +10,8 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [ ] Antwortet auf die Frage was man tun kann damit die Frage im Podcast dran kommt (#ghwfrage)
 - [ ] Schickt einem User zur Begrüßung eine Direktnachricht mit infos über den Halbwissen Chat-
 - [ ] Teilt mit wenn eine Runde zahl / Schnapszahl der Anzahl der Mitglieder erreicht wurde
+- [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren)
+
 ## Mithelfen
 Jeder kann diesem Chatbot neue Beleidigungen oder Begrüßungen lernen.
 
