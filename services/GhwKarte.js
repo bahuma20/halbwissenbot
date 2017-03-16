@@ -8,7 +8,6 @@ class GhwKarte {
   getAllEntries() {
     return new Promise((resolve, reject) => {
       GhwKarteEntry.find().then(data => {
-        console.log(data);
         resolve(data);
       }).catch(error => reject(error));
     });
