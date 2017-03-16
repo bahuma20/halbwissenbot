@@ -23,4 +23,4 @@ bearbeiten.
 
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN`
-- `GOOGLE_MAPS_API_TOKEN`
+- `GOOGLE_MAPS_API_KEY`

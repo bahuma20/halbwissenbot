@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 class GhwKarte {
   constructor() {
     // TODO: Setup Database Connection
@@ -25,7 +27,12 @@ class GhwKarte {
   }
 
   addEntryWithGeocoding(name, query) {
-    // TODO: Geocode location
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_MAPS_API_KEY}&address=${encodeURIComponent(query)}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+
     let lat = 0;
     let lon = 0;
 
