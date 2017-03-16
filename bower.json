@@ -1,0 +1,22 @@
+{
+  "name": "halbwissenbot",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Max Bachhuber <bahuma20@bahuma.io>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/bahuma/halbwissenbot",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "google-map": "GoogleWebComponents/google-map#^1.2.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24",
+    "polymer": "1.8.1"
+  }
+}
