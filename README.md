@@ -24,3 +24,4 @@ bearbeiten.
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN`
 - `GOOGLE_MAPS_API_KEY`
+- `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)

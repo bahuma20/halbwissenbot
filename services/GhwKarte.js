@@ -1,8 +1,15 @@
 const fetch = require('node-fetch');
+const mongoose = require('mongoose');
 
 class GhwKarte {
   constructor() {
     // TODO: Setup Database Connection
+    mongoose.connect(process.env.MONGODB_CONNECT_STRING);
+    this.db = mongoose.connection;
+    this.db.on('error', console.error.bind(console, 'connection error:'));
+    this.db.once('open', () => {
+      console.log('Connected to database');
+    });
   }
 
   getAllEntries() {
