@@ -4,11 +4,11 @@
   "main": "app.js",
   "license": "MIT",
   "dependencies": {
+    "bower": "^1.8.0",
     "express": "^4.15.2",
     "mongoose": "^4.9.0",
     "node-fetch": "^1.6.3",
-    "node-telegram-bot-api": "^0.27.0",
-    "bower": "^1.8.0"
+    "node-telegram-bot-api": "^0.27.0"
   },
   "scripts": {
     "start": "node bot.js",
