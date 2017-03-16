@@ -4,7 +4,6 @@ const app = express();
 const GhwKarte = require('./services/GhwKarte');
 const ghwkarte = new GhwKarte();
 
-ghwkarte.addEntryWithGeocoding('Test', 'Dietfurt');
 app.get('/api/ghwkarte/entries', (req, res) => {
   ghwkarte.getAllEntries().then(entries => res.send(entries));
 });
