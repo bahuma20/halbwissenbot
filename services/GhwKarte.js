@@ -7,18 +7,10 @@ class GhwKarte {
 
   getAllEntries() {
     return new Promise((resolve, reject) => {
-      resolve([
-        {
-          lat: 49,
-          lon: -111,
-          name: 'Punkt im Nirgendwo'
-        },
-        {
-          lat: 49.03,
-          lon: 11.58,
-          name: 'Dietfurt'
-        },
-      ]);
+      GhwKarteEntry.find().then(data => {
+        console.log(data);
+        resolve(data);
+      }).catch(error => reject(error));
     });
   }
 
