@@ -22,4 +22,5 @@ bzw. [greetings.json](https://github.com/bahuma/halbwissenbot/edit/master/greeti
 bearbeiten.
 
 ## Environment Variables
-`TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_BOT_TOKEN`
+- `GOOGLE_MAPS_API_TOKEN`

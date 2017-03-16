@@ -19,6 +19,18 @@ class GhwKarte {
       ]);
     });
   }
+
+  addEntry(name, lat, lon) {
+    // TODO: Save entry in database
+  }
+
+  addEntryWithGeocoding(name, query) {
+    // TODO: Geocode location
+    let lat = 0;
+    let lon = 0;
+
+    this.addEntry(name, lat, lon);
+  }
 }
 
 module.exports = GhwKarte;
