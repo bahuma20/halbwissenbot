@@ -18,10 +18,11 @@ class GhwKarteProcessor extends Processor {
 
     self.bot.onText(/\/ghwkarte (.+)/, function (msg, match) {
       let location = match[1];
-      console.log(location);
+
       self.ghwKarte.addEntryWithGeocoding(location, location)
         .then(entry => {
           self.bot.sendMessage(msg.chat.id, 'Dein Standort wurde zur #ghwkarte hinzugefügt.');
+
           setTimeout(() => {
             self.bot.sendMessage(msg.chat.id, self.karteURL);
           }, 1000);
