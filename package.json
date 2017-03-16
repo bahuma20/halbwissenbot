@@ -13,6 +13,6 @@
   "scripts": {
     "start": "node bot.js",
     "serve": "node server.js",
-    "postinstall": "./node_modules/.bin/bower install"
+    "postinstall": "bower install"
   }
 }
