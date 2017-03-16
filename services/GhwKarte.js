@@ -1,15 +1,8 @@
 const fetch = require('node-fetch');
-const mongoose = require('mongoose');
+const GhwKarteEntry = require('../model/GhwKarteEntry');
 
 class GhwKarte {
   constructor() {
-    // TODO: Setup Database Connection
-    mongoose.connect(process.env.MONGODB_CONNECT_STRING);
-    this.db = mongoose.connection;
-    this.db.on('error', console.error.bind(console, 'connection error:'));
-    this.db.once('open', () => {
-      console.log('Connected to database');
-    });
   }
 
   getAllEntries() {
@@ -33,6 +26,15 @@ class GhwKarte {
     // TODO: Save entry in database
     return new Promise((resolve, reject) => {
       resolve();
+      let entry = new GhwKarteEntry({
+        name: name,
+        lat: lat,
+        lon: lon
+      });
+
+      entry.save().then(() => {
+        console.log('Added entry to #ghwkarte');
+      }).error(err => console.log(err));
     });
   }
 
