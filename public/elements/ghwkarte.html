@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+
+<dom-module id="ghw-karte">
+  <style>
+    google-map {
+      height: 600px;
+    }
+  </style>
+
+  <template>
+    Ich bin die GhwKarte
+
+    <google-map api-key="AIzaSyDW94dPKeMWTz4yMkgiH67OiMJC6YytvFo" fit-to-markers="true">
+      <google-map-marker latitude="42.78" longitude="-122.4"></google-map-marker>
+      <google-map-marker latitude="50.78" longitude="-122.4"></google-map-marker>
+    </google-map>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'ghw-karte'
+    });
+  </script>
+</dom-module>
