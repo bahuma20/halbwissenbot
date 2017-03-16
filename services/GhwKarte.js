@@ -16,7 +16,6 @@ class GhwKarte {
 
   addEntry(name, lat, lon) {
     return new Promise((resolve, reject) => {
-      resolve();
       let entry = new GhwKarteEntry({
         name: name,
         lat: lat,
@@ -24,8 +23,9 @@ class GhwKarte {
       });
 
       entry.save().then(() => {
+        resolve();
         console.log('Added entry to #ghwkarte');
-      }).catch(err => console.log(err));
+      }).catch(err => reject(err));
     });
   }
 
