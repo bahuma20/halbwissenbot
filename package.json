@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "node bot.js",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "devDependencies": {
     "bower": "^1.8.0"
