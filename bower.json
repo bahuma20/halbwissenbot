@@ -17,6 +17,7 @@
   "dependencies": {
     "google-map": "GoogleWebComponents/google-map#^1.2.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24",
-    "polymer": "1.8.1"
+    "polymer": "1.8.1",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3"
   }
 }
