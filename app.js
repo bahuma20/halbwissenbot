@@ -1,5 +1,8 @@
 require('./services/Database');
+
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
+const app = express();
 
 const GreetNewUserProcessor = require('./processors/GreetNewUserProcessor');
 const ChiaProcessor = require('./processors/ChiaProcessor');
@@ -17,3 +20,20 @@ new GreetNewUserProcessor(bot);
 new ChiaProcessor(bot);
 new MemberCountProcessor(bot);
 new GhwKarteProcessor(bot);
+
+
+// Web Server
+// TODO: Split this in extra file
+const GhwKarte = require('./services/GhwKarte');
+
+const ghwkarte = new GhwKarte();
+
+app.get('/api/ghwkarte/entries', (req, res) => {
+  ghwkarte.getAllEntries().then(entries => res.send(entries));
+});
+
+app.use('/', express.static('public'));
+
+app.listen(process.env.PORT || 3000, function () {
+  console.log('Example app listening on port 3000!');
+});

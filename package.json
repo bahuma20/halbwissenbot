@@ -14,8 +14,7 @@
     "node": "6.10.0"
   },
   "scripts": {
-    "start": "node bot.js",
-    "serve": "node server.js",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "start": "node app.js",
+    "postinstall": "node ./node_modules/bower/bin/bower install"
   }
 }
