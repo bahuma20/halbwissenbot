@@ -7,7 +7,7 @@ class GhwKarteProcessor extends Processor {
     super(bot);
     let self = this;
     self.ghwKarte = new GhwKarte();
-    self.karteURL = 'https://halbwissenbot.herokuapp.com';
+    self.karteURL = 'https://halbwissenbot.mybluemix.net';
 
     self.bot.onText(/\/ghwkarte$/, function(msg) {
       self.bot.sendMessage(msg.chat.id, `Die #ghwkarte findest du auf ${self.karteURL}
