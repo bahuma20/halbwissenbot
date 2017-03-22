@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "bower": "^1.8.0",
+    "cron": "^1.2.1",
     "express": "^4.15.2",
     "mongoose": "^4.9.0",
     "node-fetch": "^1.6.3",

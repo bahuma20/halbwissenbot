@@ -8,6 +8,7 @@ const GreetNewUserProcessor = require('./processors/GreetNewUserProcessor');
 const ChiaProcessor = require('./processors/ChiaProcessor');
 const MemberCountProcessor = require('./processors/MemberCountProcessor');
 const GhwKarteProcessor = require('./processors/GhwKarteProcessor');
+const RssNotificationProcessor = require('./processors/RssNotificationProcessor');
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -20,6 +21,7 @@ new GreetNewUserProcessor(bot);
 new ChiaProcessor(bot);
 new MemberCountProcessor(bot);
 new GhwKarteProcessor(bot);
+new RssNotificationProcessor(bot);
 
 
 // Web Server
