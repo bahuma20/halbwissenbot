@@ -24,7 +24,8 @@ class RssNotificationProcessor extends Processor {
   }
 
   checkForNewReleases() {
-    console.log('check now');
+    let self = this;
+    console.log('check for new releases');
 
     const feedURL = 'http://halbwissen.co/feed/mp3';
 
@@ -33,7 +34,14 @@ class RssNotificationProcessor extends Processor {
         let guid = items[0].guid;
 
         FeedStatus.findOne({}, 'lastGuid', (err, feedStatus) => {
-          console.log(feedStatus);
+          if (feedStatus === null) {
+            self.initialize().then(() => {
+              self.updateFeedStatus(guid);
+            });
+          } else if (feedStatus.lastGuid !== guid) {
+            self.updateFeedStatus(guid);
+            self.notifyAboutEpisode(items[0]);
+          }
         });
       }).catch(error => {
         console.log(error);
@@ -41,9 +49,11 @@ class RssNotificationProcessor extends Processor {
   }
 
   initialize() {
-    let feedStatus = new FeedStatus();
-    feedStatus.lastGuid = 0;
-    feedStatus.save();
+    let feedStatus = new FeedStatus({
+      lastGuid: '0'
+    });
+
+    return feedStatus.save();
   }
 
   updateFeedStatus(newGuid) {
@@ -51,6 +61,13 @@ class RssNotificationProcessor extends Processor {
       feedStatus.lastGuid = newGuid;
       feedStatus.save();
     });
+  }
+
+  notifyAboutEpisode(item) {
+    console.log(item.title);
+    console.log(item.summary);
+
+    bot.sendMessage()
   }
 }
 
