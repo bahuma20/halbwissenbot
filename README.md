@@ -9,7 +9,7 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [x] Teilt mit wenn eine runde Zahl / Schnapszahl der Anzahl der Mitglieder erreicht wurde
 - [x] /ghwkarte Ort <- Um der #ghwkarte einen neuen Ort hinzuzufügen
 - [ ] Antwortet auf Fragen an ihn mit "Halts Maul, ich schlafe..."
-- [ ] Antwortet auf die Frage was man tun kann damit die Frage im Podcast dran kommt (#ghwfrage)
+- [ ] Schickt eine Nachricht wenn eine neue Folge raus ist
 - [ ] Schickt einem User zur Begrüßung eine Direktnachricht mit infos über den Halbwissen Chat (Nicht möglich da ein Bot keine Konversation beginnen kann...)
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 
