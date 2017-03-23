@@ -1,7 +1,9 @@
 const Processor = require('./Processor');
 const CronJob = require('cron').CronJob;
 const feedparser = require('feedparser-promised');
+
 const FeedStatus = require('../model/FeedStatus');
+const Chat = require('../model/Chat');
 
 class RssNotificationProcessor extends Processor {
 
@@ -11,6 +13,10 @@ class RssNotificationProcessor extends Processor {
     let self = this;
 
     self.setupCronjob();
+
+    self.bot.onText(/\/halbwissenbotregisterchat/, function (msg, match) {
+      self.registerChat(msg.chat.id);
+    });
   }
 
   setupCronjob() {
@@ -64,10 +70,21 @@ class RssNotificationProcessor extends Processor {
   }
 
   notifyAboutEpisode(item) {
-    console.log(item.title);
-    console.log(item.summary);
+    let self = this;
+    console.log('notify about a new episode');
 
-    bot.sendMessage()
+    Chat.find().then((chats) => {
+      chats.forEach(chat => {
+        self.bot.sendMessage(chat.chatId, `Eine neue Folge ist raus:
+${item.link}
+#ghwfolge`);
+      })
+    });
+  }
+
+  registerChat(chatId) {
+    let chat = new Chat({chatId: chatId});
+    chat.save();
   }
 }
 
