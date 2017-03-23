@@ -24,7 +24,7 @@ class RssNotificationProcessor extends Processor {
 
     self.checkForNewReleases();
 
-    let job = new CronJob('0 * * * * *', () => {
+    let job = new CronJob('0 */10 * * * *', () => {
       self.checkForNewReleases();
     }, null, true, 'Europe/Berlin');
   }
