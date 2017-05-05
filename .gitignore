@@ -2,3 +2,5 @@ node_modules
 .idea/
 npm.error
 public/bower_components
+tmp/*
+!tmp/.gitkeep
