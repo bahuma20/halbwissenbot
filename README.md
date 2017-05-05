@@ -3,7 +3,7 @@
 Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 
 ## Funktionen
-- [x] Chia => SUPERFOOD
+- [x] Chia => SUPERFOOD (inkl. Bilder)
 - [x] Automatische Begrüßung mit einer netten Beleidigung
 - [x] Fragt nach einer Tätigkeit in der Automobilbranche
 - [x] Teilt mit wenn eine runde Zahl / Schnapszahl der Anzahl der Mitglieder erreicht wurde
@@ -26,4 +26,5 @@ bearbeiten.
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN`
 - `GOOGLE_MAPS_API_KEY`
+- `OCR_SPACE_API_KEY`
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)

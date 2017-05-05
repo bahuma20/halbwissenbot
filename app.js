@@ -5,6 +5,7 @@ const app = express();
 
 const GreetNewUserProcessor = require('./processors/GreetNewUserProcessor');
 const ChiaProcessor = require('./processors/ChiaProcessor');
+const ChiaImageProcessor = require('./processors/ChiaImageProcessor');
 const MemberCountProcessor = require('./processors/MemberCountProcessor');
 const GhwKarteProcessor = require('./processors/GhwKarteProcessor');
 const RssNotificationProcessor = require('./processors/RssNotificationProcessor');
@@ -26,6 +27,7 @@ db.once('open', () => {
   // Add Processors
   new GreetNewUserProcessor(bot);
   new ChiaProcessor(bot);
+  new ChiaImageProcessor(bot);
   new MemberCountProcessor(bot);
   new GhwKarteProcessor(bot);
   new RssNotificationProcessor(bot);
