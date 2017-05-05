@@ -46,7 +46,7 @@ class ChiaImageProcessor extends Processor {
                               console.log(imageText);
                               console.log('=== CUT HERE ===');
 
-                              if (imageText.indexOf('chia') !== -1 && self.shouldReply(msg)) {
+                              if (imageText.toLowerCase().indexOf('chia') !== -1 && self.shouldReply(msg)) {
                                   self.bot.sendMessage(msg.chat.id, 'SUPERFOOD');
                               }
                           });
