@@ -12,7 +12,8 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [x] Schickt eine Nachricht wenn eine neue Folge raus ist
 - [ ] Schickt einem User zur Begrüßung eine Direktnachricht mit infos über den Halbwissen Chat (Nicht möglich da ein Bot keine Konversation beginnen kann...)
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
-- [ ] Schickt Tweets in die Gruppe
+- [ ] Twitter Integration
+- [ ] Facebook Integration
 
 
 ## Mithelfen
