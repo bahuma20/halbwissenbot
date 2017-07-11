@@ -23,9 +23,9 @@ class GreetNewUserProcessor extends Processor {
     if (self.shouldReply(msg)) {
       self.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${self.randomValue(this.niceInsults)}. ${self.randomValue(this.greetings)}`);
 
-      setTimeout(function() {
-        self.bot.sendMessage(msg.chat.id, 'Arbeitest du zufällig in der Automobilbranche?');
-      }, 3000);
+//      setTimeout(function() {
+//        self.bot.sendMessage(msg.chat.id, 'Arbeitest du zufällig in der Automobilbranche?');
+//      }, 3000);
     }
 
   }
