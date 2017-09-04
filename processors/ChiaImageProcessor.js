@@ -57,10 +57,6 @@ class ChiaImageProcessor extends Processor {
 
       }
     });
-
-    self.bot.on('text', msg => {
-      self.onText(msg);
-    })
   }
 
   shouldReply(msg) {
