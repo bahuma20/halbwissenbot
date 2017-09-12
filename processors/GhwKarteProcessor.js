@@ -23,6 +23,17 @@ Falls du deinen Standort auch zur #ghwkarte hinzufügen möchtest verwende "/ghw
 ${self.karteURL}`);
         }).catch(error => console.log(error));
     });
+    
+    // Todo: Don't repeat code 
+    self.bot.onText(/\/ghwkarte@halbwissenbot (.+)/, function (msg, match) {
+      let location = match[1];
+
+      self.ghwKarte.addEntryWithGeocoding(location, location)
+        .then(entry => {
+          self.bot.sendMessage(msg.chat.id, `Dein Standort wurde zur #ghwkarte hinzugefügt.
+${self.karteURL}`);
+        }).catch(error => console.log(error));
+    });
   }
 }
 
