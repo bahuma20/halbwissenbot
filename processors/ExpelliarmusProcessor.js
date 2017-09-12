@@ -27,7 +27,7 @@ class ExpelliarmusProcessor extends Processor {
 
 
     self.bot.onText(/\/expelliarmus/, msg => {
-      if (msg.text.indexOf('@halbwissenbot') !== -1 && self.shouldReply(msg)) {
+      if (self.shouldReply(msg)) {
         self.bot.sendMessage(msg.chat.id, self.randomValue(self.answers));
       }
     });
