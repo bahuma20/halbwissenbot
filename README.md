@@ -10,6 +10,7 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [x] /ghwkarte Ort <- Um der #ghwkarte einen neuen Ort hinzuzufügen
 - [x] Antwortet auf Fragen an ihn mit "Halts Maul, ich schlafe..."
 - [x] Schickt eine Nachricht wenn eine neue Folge raus ist
+- [x] Macht irgendwas bei /expelliarmus
 - [ ] Schickt einem User zur Begrüßung eine Direktnachricht mit infos über den Halbwissen Chat (Nicht möglich da ein Bot keine Konversation beginnen kann...)
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 - [ ] Twitter Integration
@@ -19,7 +20,7 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 ## Mithelfen
 Jeder kann diesem Chatbot neue Beleidigungen oder Begrüßungen lernen.
 
-Einfach hier auf Github die Datei 
+Einfach hier auf Github die Datei
 [niceInsults.json](https://github.com/bahuma/halbwissenbot/edit/master/niceInsults.json)
 bzw. [greetings.json](https://github.com/bahuma/halbwissenbot/edit/master/greetings.json)
 bearbeiten.

@@ -10,6 +10,7 @@ const MemberCountProcessor = require('./processors/MemberCountProcessor');
 const GhwKarteProcessor = require('./processors/GhwKarteProcessor');
 const RssNotificationProcessor = require('./processors/RssNotificationProcessor');
 const AnswerProcessor = require('./processors/AnswerProcessor');
+const ExpelliarmusProcessor = require('./processors/ExpelliarmusProcessor');
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -33,6 +34,7 @@ db.once('open', () => {
   new GhwKarteProcessor(bot);
   new RssNotificationProcessor(bot);
   new AnswerProcessor(bot);
+  new ExpelliarmusProcessor(bot);
 });
 
 
