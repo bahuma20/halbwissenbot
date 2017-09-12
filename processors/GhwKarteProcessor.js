@@ -13,6 +13,14 @@ class GhwKarteProcessor extends Processor {
       self.bot.sendMessage(msg.chat.id, `Die #ghwkarte findest du auf ${self.karteURL}
 Falls du deinen Standort auch zur #ghwkarte hinzufügen möchtest verwende "/ghwkarte ORT"`);
     });
+    
+    // Todo: Don't repeat code 
+    self.bot.onText(/\/ghwkarte@halbwissenbot$/, function(msg) {
+      self.bot.sendMessage(msg.chat.id, `Die #ghwkarte findest du auf ${self.karteURL}
+Falls du deinen Standort auch zur #ghwkarte hinzufügen möchtest verwende "/ghwkarte ORT"`);
+    });
+    
+    
 
     self.bot.onText(/\/ghwkarte (.+)/, function (msg, match) {
       let location = match[1];
