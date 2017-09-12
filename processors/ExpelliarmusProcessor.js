@@ -19,7 +19,7 @@ class ExpelliarmusProcessor extends Processor {
       'Es sind nicht unsere Fähigkeiten, die zeigen, wer wir wirklich sind, sondern unsere Entscheidungen.',
       'Happiness can be found, even in the darkest time of life, if one only remembers to turn on the light.',
       'Natürlich passiert es in deinem Kopf, aber warum um alles in der Welt sollte das bedeuten, dass es nicht wirklich ist?',
-      'Vor uns liegen dunkle, schwere Zeiten, Harry. Schon bald müssen wir uns entscheiden, zwischen dem richtigen Weg und dem leichten.'
+      'Vor uns liegen dunkle, schwere Zeiten, Harry. Schon bald müssen wir uns entscheiden, zwischen dem richtigen Weg und dem leichten.',
       'Es verlangt sehr viel Mut, sich seinen Feinden in den Weg zu stellen, wesentlich mehr noch, sich seinen Freunden in den Weg zustellen.',
       'Es ist der Wert der Überzeugung, der den Erfolg ausmacht, nicht die Zahl der Anhänger.',
       'Dass Harry tot ist ändert nichts. (Seamus: "Hör auf, Neville!") Tag für Tag sterben Leute! Freunde, Verwandte . . . Ja, heute haben wir Harry verloren. Aber er ist noch bei uns: Hier drin! Genau wie Fred, Remus, Tonks . . . Sie alle. Ihr Tod war nicht sinnlos. Aber Ihrer wird es sein! Weil Sie im Unrecht sind! Harrys Herz hat für uns geschlagen, für jeden von uns! Es ist noch nicht vorbei!'
