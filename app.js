@@ -33,6 +33,7 @@ db.once('open', () => {
   new GhwKarteProcessor(bot);
   new RssNotificationProcessor(bot);
   new AnswerProcessor(bot);
+  new ExpelliarmusProcessor(bot);
 });
 
 
