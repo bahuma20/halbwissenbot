@@ -12,10 +12,16 @@ class RssNotificationProcessor extends Processor {
 
     let self = this;
 
+    // Save chat ids of messages in this session in the temp storage so that the requests dont have to go against the database on every message
+    self.chatTempStorage = [];
+
     self.setupCronjob();
 
-    self.bot.onText(/\/halbwissenbotregisterchat/, function (msg, match) {
-      self.registerChat(msg.chat.id);
+    self.bot.on('text', msg => {
+      if (self.chatTempStorage.indexOf(msg.chat.id) === -1) {
+        self.registerChat(msg.chat.id);
+        self.chatTempStorage.push(msg.chat.id);
+      }
     });
   }
 
@@ -83,8 +89,19 @@ ${item.link}
   }
 
   registerChat(chatId) {
-    let chat = new Chat({chatId: chatId});
-    chat.save();
+    console.log('check if should register ' + chatId);
+    let query = Chat.where({chatId: chatId});
+
+    // Check if this group is already in the database and if not, add it.
+    query.findOne((err, chat) => {
+      if (err) console.log(err);
+
+      if (chat === null) {
+        console.log('Register new chat ' + chatId);
+        let chat = new Chat({chatId: chatId});
+        chat.save();
+      }
+    });
   }
 }
 
