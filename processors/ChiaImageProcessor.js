@@ -36,7 +36,14 @@ class ChiaImageProcessor extends Processor {
                                   language: 'ger'
                               }
                           }, function (error, response, body) {
-                              if (error) return console.log(error);
+                              if (error) {
+                                console.log('--OCR Error--');
+                                console.log(error);
+                                console.log(response);
+                                console.log(body);
+                                console.log('--OCR Error End--');
+                                return;
+                              }
 
                               let result = JSON.parse(body);
                               let imageText = result.ParsedResults[0].ParsedText;
