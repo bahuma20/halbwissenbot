@@ -1,4 +1,5 @@
 const Processor = require('./Processor');
+const Message = require('../model/Message');
 
 class AnswerProcessor extends Processor {
   constructor(bot) {
@@ -9,6 +10,7 @@ class AnswerProcessor extends Processor {
 
     self.bot.on('text', msg => {
       if (msg.text.indexOf('@halbwissenbot') !== -1 && self.shouldReply(msg)) {
+        self.logMessage(msg);
         self.bot.sendMessage(msg.chat.id, self.randomValue(self.answers));
       }
     });
@@ -32,6 +34,19 @@ class AnswerProcessor extends Processor {
     }
 
     return array[random(0, array.length - 1)];
+  }
+
+  logMessage(msg) {
+    let message = new Message({
+      chatId: msg.chatId,
+      msg: msg
+    });
+
+    message.markModified('msg');
+
+    message.save((err, response) => {
+      if(err) return console.log(err);
+    });
   }
 }
 
