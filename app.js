@@ -48,6 +48,15 @@ app.get('/api/ghwkarte/entries', (req, res) => {
   ghwkarte.getAllEntries().then(entries => res.send(entries));
 });
 
+
+const Message = require('./model/Message');
+
+app.get('/api/messages', (req, res) => {
+  Message.find().then(data => {
+    res.send(data);
+  });
+});
+
 app.use('/', express.static('public'));
 
 app.listen(process.env.PORT || 3000, function () {

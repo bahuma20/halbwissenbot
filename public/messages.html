@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Messages to halbwissenbot</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .message {
+      border: solid 1px #ddd;
+      padding: 15px;
+      max-width: 800px;
+      margin-bottom: 2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Messages to halbwissenbot</h1>
+  <div class="container">Loading...</div>
+
+  <script>
+    fetch('/api/messages')
+      .then(response => response.json())
+      .then(messages => {
+        let html = '';
+
+        messages.forEach(message => {
+          if (message.msg.text === '/ghwkarte@halbwissenbot' || message.msg.text === '@halbwissenbot') {
+            return;
+          }
+
+          let chatName = '';
+
+          switch (message.msg.chat.type) {
+            case 'supergroup':
+              chatName = message.msg.chat.title + ' (' + message.msg.chat.username + ')';
+              break;
+
+            case 'group':
+              chatName = message.msg.chat.title;
+              break;
+
+            case 'private':
+              chatName = 'Direktnachricht';
+              break;
+          }
+
+          let replyHtml = '';
+
+          if (message.msg.hasOwnProperty('reply_to_message')) {
+            replyHtml = `
+              <p><strong>Antwort auf:</strong><br>
+              ${message.msg.reply_to_message.text.replace("\n", '<br>')}</p>
+            `;
+          }
+
+          let messageHtml = `
+            <div class="message">
+              <p><strong>Von:</strong> ${message.msg.from.first_name} ${message.msg.from.last_name} (${message.msg.from.username})</p>
+              <p><strong>Chat:</strong> ${chatName} [${message.msg.chat.type}]</p>
+              ${replyHtml}
+              <p><strong>Nachricht:</strong><br>
+              ${message.msg.text.replace("\n", '<br>')}</p>
+            </div>
+          `;
+
+          html += messageHtml
+        });
+
+        document.querySelector('.container').innerHTML = html;
+      })
+  </script>
+</body>
+</html>
