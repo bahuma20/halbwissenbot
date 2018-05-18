@@ -13,7 +13,7 @@ class GreetNewUserProcessor extends Processor {
       self.botId = botInfo.id;
     });
 
-    self.bot.on('new_chat_participant', msg => {
+    self.bot.on('new_chat_members', msg => {
       self.onNewChatParticipant(msg);
     });
   }

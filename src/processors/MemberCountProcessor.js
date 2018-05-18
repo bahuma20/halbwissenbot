@@ -12,7 +12,7 @@ class MemberCountProcessor extends Processor {
     self.schnapsZahlen = [11, 22, 33, 44, 55, 66, 77, 88, 99, 111, 222, 333, 444, 555, 666, 777,
       888, 999, 1111, 2222, 3333];
 
-    self.bot.on('new_chat_participant', msg => {
+    self.bot.on('new_chat_members', msg => {
       self.onNewChatParticipant(msg);
     });
   }

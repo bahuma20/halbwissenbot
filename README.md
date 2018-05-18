@@ -34,3 +34,4 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 - `GOOGLE_MAPS_API_KEY`
 - `OCR_SPACE_API_KEY`
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)
+- `NTBA_FIX_319` (Temporary fix to prevent some lib errors. Should be gone when telegram-bot-api ist in v1)

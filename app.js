@@ -20,7 +20,9 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(token, {polling: true});
 
 // Connect to database;
-mongoose.connect(process.env.MONGODB_CONNECT_STRING);
+mongoose.connect(process.env.MONGODB_CONNECT_STRING, {
+  useMongoClient: true
+});
 
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
