@@ -5,12 +5,13 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 ## Funktionen
 - [x] Chia => SUPERFOOD (inkl. Bilder)
 - [x] Automatische Begrüßung mit einer netten Beleidigung
-- [x] Fragt nach einer Tätigkeit in der Automobilbranche
+- [ ] Fragt nach einer Tätigkeit in der Automobilbranche
 - [x] Teilt mit wenn eine runde Zahl / Schnapszahl der Anzahl der Mitglieder erreicht wurde
 - [x] /ghwkarte Ort <- Um der #ghwkarte einen neuen Ort hinzuzufügen
-- [x] Antwortet auf Fragen an ihn mit "Halts Maul, ich schlafe..."
-- [x] Schickt eine Nachricht wenn eine neue Folge raus ist
+- [x] Antwortet auf Fragen an ihn mit "Halts Maul, ich schlafe..." oder ähnlichem
+- [x] Schickt eine Nachricht wenn eine neue Folge vom "Gefährliches Halbwissen" Podcast raus ist
 - [x] Macht irgendwas bei /expelliarmus
+- [x] Schickt eine Random Nachricht am Montag um 10 Uhr
 - [ ] Schickt einem User zur Begrüßung eine Direktnachricht mit infos über den Halbwissen Chat (Nicht möglich da ein Bot keine Konversation beginnen kann...)
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 - [ ] Twitter Integration
