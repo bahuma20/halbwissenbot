@@ -1,17 +1,18 @@
 const Processor = require('./Processor');
 const Message = require('../model/Message');
+const Toolbox = require('../Toolbox');
 
 class AnswerProcessor extends Processor {
   constructor(bot) {
     super(bot);
     let self = this;
 
-    self.answers = require('../answers.json');
+    self.answers = require('../../texts/answers.json');
 
     self.bot.on('text', msg => {
       if (msg.text.indexOf('@halbwissenbot') !== -1 && self.shouldReply(msg)) {
         self.logMessage(msg);
-        self.bot.sendMessage(msg.chat.id, self.randomValue(self.answers));
+        self.bot.sendMessage(msg.chat.id, Toolbox.randomValue(self.answers));
       }
     });
   }
@@ -26,14 +27,6 @@ class AnswerProcessor extends Processor {
     }
 
     return true;
-  }
-
-  randomValue(array) {
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    return array[random(0, array.length - 1)];
   }
 
   logMessage(msg) {

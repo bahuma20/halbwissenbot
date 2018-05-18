@@ -1,16 +1,17 @@
 const Processor = require('./Processor');
+const Toolbox = require('../Toolbox');
 
 class ExpelliarmusProcessor extends Processor {
   constructor(bot) {
     super(bot);
     let self = this;
 
-    self.answers = require('../expelliarmus.json');
+    self.answers = require('../../texts/expelliarmus.json');
 
 
     self.bot.onText(/\/expelliarmus/, msg => {
       if (self.shouldReply(msg)) {
-        self.bot.sendMessage(msg.chat.id, self.randomValue(self.answers));
+        self.bot.sendMessage(msg.chat.id, Toolbox.randomValue(self.answers));
       }
     });
   }
@@ -25,14 +26,6 @@ class ExpelliarmusProcessor extends Processor {
     }
 
     return true;
-  }
-
-  randomValue(array) {
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    return array[random(0, array.length - 1)];
   }
 }
 

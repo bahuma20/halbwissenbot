@@ -3,15 +3,15 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const app = express();
 
-const GreetNewUserProcessor = require('./processors/GreetNewUserProcessor');
-const ChiaProcessor = require('./processors/ChiaProcessor');
-const ChiaImageProcessor = require('./processors/ChiaImageProcessor');
-const MemberCountProcessor = require('./processors/MemberCountProcessor');
-const GhwKarteProcessor = require('./processors/GhwKarteProcessor');
-const RssNotificationProcessor = require('./processors/RssNotificationProcessor');
-const AnswerProcessor = require('./processors/AnswerProcessor');
-const ExpelliarmusProcessor = require('./processors/ExpelliarmusProcessor');
-const RandomMessageProcessor = require('./processors/RandomMessageProcessor');
+const GreetNewUserProcessor = require('./src/processors/GreetNewUserProcessor');
+const ChiaProcessor = require('./src/processors/ChiaProcessor');
+const ChiaImageProcessor = require('./src/processors/ChiaImageProcessor');
+const MemberCountProcessor = require('./src/processors/MemberCountProcessor');
+const GhwKarteProcessor = require('./src/processors/GhwKarteProcessor');
+const RssNotificationProcessor = require('./src/processors/RssNotificationProcessor');
+const AnswerProcessor = require('./src/processors/AnswerProcessor');
+const ExpelliarmusProcessor = require('./src/processors/ExpelliarmusProcessor');
+const RandomMessageProcessor = require('./src/processors/RandomMessageProcessor');
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -42,7 +42,7 @@ db.once('open', () => {
 
 // Web Server
 // TODO: Split this in extra file
-const GhwKarte = require('./services/GhwKarte');
+const GhwKarte = require('./src/services/GhwKarte');
 
 const ghwkarte = new GhwKarte();
 
@@ -51,7 +51,7 @@ app.get('/api/ghwkarte/entries', (req, res) => {
 });
 
 
-const Message = require('./model/Message');
+const Message = require('./src/model/Message');
 
 app.get('/api/messages', (req, res) => {
   Message.find().then(data => {

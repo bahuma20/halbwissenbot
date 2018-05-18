@@ -1,26 +1,16 @@
 const Processor = require('./Processor');
 const Chat = require('../model/Chat');
 const CronJob = require('cron').CronJob;
+const Toolbox = require('../Toolbox');
 
 class RandomMessageProcessor extends Processor {
   constructor(bot) {
     super(bot);
     let self = this;
 
-    self.messages = [
-      `Hey Leute,
-worauf freut ihr euch diese Woche besonders?`,
-    ];
+    self.messages = require('../../texts/randomMessages.json');
 
     this.setupCronjob();
-  }
-
-  randomValue(array) {
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    return array[random(0, array.length - 1)];
   }
 
   setupCronjob() {
@@ -38,7 +28,7 @@ worauf freut ihr euch diese Woche besonders?`,
 
     Chat.find().then((chats) => {
       chats.forEach(chat => {
-        self.bot.sendMessage(chat.chatId, this.randomValue(self.messages));
+        self.bot.sendMessage(chat.chatId, Toolbox.randomValue(self.messages));
       });
     });
   }

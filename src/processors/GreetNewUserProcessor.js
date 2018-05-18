@@ -1,12 +1,13 @@
 const Processor = require('./Processor');
+const Toolbox = require('../Toolbox');
 
 class GreetNewUserProcessor extends Processor {
   constructor(bot) {
     super(bot);
     let self = this;
 
-    self.greetings = require('../greetings.json');
-    self.niceInsults = require('../niceInsults.json');
+    self.greetings = require('../../texts/greetings.json');
+    self.niceInsults = require('../../texts/niceInsults.json');
 
     bot.getMe().then(botInfo => {
       self.botId = botInfo.id;
@@ -21,7 +22,7 @@ class GreetNewUserProcessor extends Processor {
     let self = this;
 
     if (self.shouldReply(msg)) {
-      self.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${self.randomValue(this.niceInsults)}. ${self.randomValue(this.greetings)}`);
+      self.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${Toolbox.randomValue(this.niceInsults)}. ${Toolbox.randomValue(this.greetings)}`);
 
 //      setTimeout(function() {
 //        self.bot.sendMessage(msg.chat.id, 'Arbeitest du zufällig in der Automobilbranche?');
@@ -37,14 +38,6 @@ class GreetNewUserProcessor extends Processor {
     }
 
     return true;
-  }
-
-  randomValue(array) {
-    function random(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    return array[random(0, array.length - 1)];
   }
 }
 

@@ -21,10 +21,13 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 ## Mithelfen
 Jeder kann diesem Chatbot neue Beleidigungen oder Begrüßungen lernen.
 
-Einfach hier auf Github die Datei
-[niceInsults.json](https://github.com/bahuma/halbwissenbot/edit/master/niceInsults.json)
-bzw. [greetings.json](https://github.com/bahuma/halbwissenbot/edit/master/greetings.json)
-bearbeiten.
+Einfach hier auf Github eine dieser Dateien bearbeiten:
+- [niceInsults.json](https://github.com/bahuma/halbwissenbot/edit/master/texts/niceInsults.json)
+- [greetings.json](https://github.com/bahuma/halbwissenbot/edit/master/texts/greetings.json)
+- [answers.json](https://github.com/bahuma/halbwissenbot/edit/master/texts/answers.json)
+- [expelliarmus.json](https://github.com/bahuma/halbwissenbot/edit/master/texts/expelliarmus.json)
+- [randomMessages.json](https://github.com/bahuma/halbwissenbot/edit/master/texts/randomMessages.json)
+
 
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN`
