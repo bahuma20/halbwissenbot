@@ -37,9 +37,9 @@ class AnswerProcessor extends Processor {
 
     message.markModified('msg');
 
-    message.save((err, response) => {
+    /*message.save((err, response) => {
       if(err) return console.log(err);
-    });
+    });*/
   }
 }
 
