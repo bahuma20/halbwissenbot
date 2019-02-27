@@ -55,11 +55,11 @@ app.get('/api/ghwkarte/entries', (req, res) => {
 
 const Message = require('./src/model/Message');
 
-app.get('/api/messages', (req, res) => {
+/*app.get('/api/messages', (req, res) => {
   Message.find().then(data => {
     res.send(data);
   });
-});
+});*/
 
 app.use('/', express.static('public'));
 
