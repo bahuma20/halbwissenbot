@@ -16,6 +16,8 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 - [ ] Twitter Integration
 - [ ] Facebook Integration
+- [ ] Neueste Folgen im Subreddit posten
+- [x] /tirade
 
 
 ## Mithelfen
@@ -35,3 +37,7 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 - `OCR_SPACE_API_KEY`
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)
 - `NTBA_FIX_319` (Temporary fix to prevent some lib errors. Should be gone when telegram-bot-api ist in v1)
+- `REDDIT_CLIENT_ID`
+- `REDDIT_CLIENT_SECRET`
+- `REDDIT_USERNAME`
+- `REDDIT_PASSWORD`

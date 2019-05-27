@@ -12,6 +12,7 @@ const RssNotificationProcessor = require('./src/processors/RssNotificationProces
 const AnswerProcessor = require('./src/processors/AnswerProcessor');
 const ExpelliarmusProcessor = require('./src/processors/ExpelliarmusProcessor');
 const RandomMessageProcessor = require('./src/processors/RandomMessageProcessor');
+const TiradeProcessor = require('./src/processors/TiradeProcessor');
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -39,6 +40,7 @@ db.once('open', () => {
   new AnswerProcessor(bot);
   new ExpelliarmusProcessor(bot);
   new RandomMessageProcessor(bot);
+  new TiradeProcessor(bot);
 });
 
 
