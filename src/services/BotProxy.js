@@ -1,4 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
+const Discord = require('discord.js');
 
 class BotProxy {
 
@@ -7,13 +8,30 @@ class BotProxy {
       telegram: {
         id: 'telegram',
         username: process.env.TELEGRAM_BOT_USERNAME,
-      }
+      },
+      discord: {
+        id: 'discord',
+        username: process.env.DISCORD_CLIENT_ID,
+      },
     };
 
-    const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
 
+
+    // TELEGRAM
+    const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
     // Create a bot that uses 'polling' to fetch new updates
     this.telegramBot = new TelegramBot(telegramToken, {polling: true});
+
+
+
+    // DISCORD
+    this.discordBot = new Discord.Client();
+
+    this.discordBot.once('ready', e => {
+      console.log('Discord Bot Ready');
+    });
+
+    this.discordBot.login(process.env.DISCORD_BOT_TOKEN);
   }
 
 
@@ -29,6 +47,18 @@ class BotProxy {
         text: msg.text,
         date: msg.date,
         chatId: msg.chat.id,
+      };
+
+      callback(message);
+    });
+
+
+    this.discordBot.on('message', msg => {
+      let message = {
+        bot: this.botInfos.discord,
+        text: msg.content,
+        date: Math.round(msg.createdTimestamp / 1000),
+        chatId: msg.channel.id,
       };
 
       callback(message);
@@ -50,6 +80,11 @@ class BotProxy {
         break;
 
       case 'discord':
+        let channel = this.discordBot.channels.find('id', chatId);
+
+        if (channel) {
+          channel.send(text);
+        }
 
         break;
     }

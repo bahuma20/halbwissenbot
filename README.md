@@ -34,6 +34,8 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_BOT_USERNAME`
+- `DISCORD_BOT_TOKEN`
+- `DISCORD_CLIENT_ID`
 - `GOOGLE_MAPS_API_KEY`
 - `OCR_SPACE_API_KEY`
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)
