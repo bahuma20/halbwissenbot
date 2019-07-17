@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const BotProxy = require('./src/services/BotProxy');
 const app = express();
 
 const GreetNewUserProcessor = require('./src/processors/GreetNewUserProcessor');
@@ -14,11 +14,7 @@ const ExpelliarmusProcessor = require('./src/processors/ExpelliarmusProcessor');
 const RandomMessageProcessor = require('./src/processors/RandomMessageProcessor');
 const TiradeProcessor = require('./src/processors/TiradeProcessor');
 
-// replace the value below with the Telegram token you receive from @BotFather
-const token = process.env.TELEGRAM_BOT_TOKEN;
-
-// Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
+let bot = new BotProxy();
 
 // Connect to database;
 mongoose.connect(process.env.MONGODB_CONNECT_STRING, {
@@ -31,16 +27,16 @@ db.once('open', () => {
   console.log('Connected to database');
 
   // Add Processors
-  new GreetNewUserProcessor(bot);
-  new ChiaProcessor(bot);
-  new ChiaImageProcessor(bot);
-  new MemberCountProcessor(bot);
-  new GhwKarteProcessor(bot);
-  new RssNotificationProcessor(bot);
+  // new GreetNewUserProcessor(bot);
+  // new ChiaProcessor(bot);
+  // new ChiaImageProcessor(bot);
+  // new MemberCountProcessor(bot);
+  // new GhwKarteProcessor(bot);
+  // new RssNotificationProcessor(bot);
   new AnswerProcessor(bot);
-  new ExpelliarmusProcessor(bot);
-  new RandomMessageProcessor(bot);
-  new TiradeProcessor(bot);
+  // new ExpelliarmusProcessor(bot);
+  // new RandomMessageProcessor(bot);
+  // new TiradeProcessor(bot);
 });
 
 
