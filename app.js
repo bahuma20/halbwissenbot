@@ -27,7 +27,7 @@ db.once('open', () => {
   console.log('Connected to database');
 
   // Add Processors
-  // new GreetNewUserProcessor(bot);
+  new GreetNewUserProcessor(bot);
   // new ChiaProcessor(bot);
   // new ChiaImageProcessor(bot);
   // new MemberCountProcessor(bot);

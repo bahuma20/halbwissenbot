@@ -9,11 +9,7 @@ class GreetNewUserProcessor extends Processor {
     self.greetings = require('../../texts/greetings.json');
     self.niceInsults = require('../../texts/niceInsults.json');
 
-    bot.getMe().then(botInfo => {
-      self.botId = botInfo.id;
-    });
-
-    self.bot.on('new_chat_members', msg => {
+    self.bot.onNewMember(msg => {
       self.onNewChatParticipant(msg);
     });
   }
@@ -22,7 +18,7 @@ class GreetNewUserProcessor extends Processor {
     let self = this;
 
     if (self.shouldReply(msg)) {
-      self.bot.sendMessage(msg.chat.id, `Hallo ${msg.new_chat_participant.first_name} du ${Toolbox.randomValue(this.niceInsults)}. ${Toolbox.randomValue(this.greetings)}`);
+      self.bot.sendMessage(msg.bot.id, msg.chatId, `Hallo ${msg.newMember.name} du ${Toolbox.randomValue(this.niceInsults)}. ${Toolbox.randomValue(this.greetings)}`);
 
 //      setTimeout(function() {
 //        self.bot.sendMessage(msg.chat.id, 'Arbeitest du zufällig in der Automobilbranche?');
@@ -33,7 +29,7 @@ class GreetNewUserProcessor extends Processor {
 
   shouldReply(msg) {
     // DO NOT REPLY WHEN THE USER WHO JOINED IS THE BOT HIMSELF
-    if (msg.new_chat_member.id === this.botId) {
+    if (msg.newMember.id === msg.bot.username) {
       return false;
     }
 

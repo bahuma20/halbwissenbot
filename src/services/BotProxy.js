@@ -44,9 +44,9 @@ class BotProxy {
     this.telegramBot.on('text', msg => {
       let message = {
         bot: this.botInfos.telegram,
+        chatId: msg.chat.id,
         text: msg.text,
         date: msg.date,
-        chatId: msg.chat.id,
       };
 
       callback(message);
@@ -56,9 +56,43 @@ class BotProxy {
     this.discordBot.on('message', msg => {
       let message = {
         bot: this.botInfos.discord,
+        chatId: msg.channel.id,
         text: msg.content,
         date: Math.round(msg.createdTimestamp / 1000),
-        chatId: msg.channel.id,
+      };
+
+      callback(message);
+    });
+  }
+
+
+  /**
+   * React when a new member joins a channel.
+   *
+   * @param callback
+   */
+  onNewMember(callback) {
+    this.telegramBot.on('new_chat_members', msg => {
+      let message = {
+        bot: this.botInfos.telegram,
+        chatId: msg.chat.id,
+        newMember: {
+          name: msg.new_chat_participant.first_name,
+          id: msg.new_chat_member.id,
+        }
+      };
+
+      callback(message);
+    });
+
+    this.discordBot.on("guildMemberAdd", member => {
+      let message = {
+        bot: this.botInfos.discord,
+        chatId: member.guild.systemChannelID, // This is the id configured in the guild settings where the welcome messages should be sent to.
+        newMember: {
+          name: member.user.username,
+          id: member.user.id,
+        }
       };
 
       callback(message);
