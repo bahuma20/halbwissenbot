@@ -8,30 +8,54 @@ class BotProxy {
       telegram: {
         id: 'telegram',
         username: process.env.TELEGRAM_BOT_USERNAME,
+        mainChatIds: new Set(), // a list of chat ids which are considered as the main chat / channel
       },
       discord: {
         id: 'discord',
         username: process.env.DISCORD_CLIENT_ID,
+        mainChatIds: new Set(), // a list of chat ids which are considered as the main chat / channel
       },
     };
 
+    this.discordBot = null;
+    this.telegramBot = null;
+  }
 
 
-    // TELEGRAM
-    const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
-    // Create a bot that uses 'polling' to fetch new updates
-    this.telegramBot = new TelegramBot(telegramToken, {polling: true});
+  /**
+   * Has to be called as the first method.
+   * Creates all different bots and executes some startup actions.
+   * Returns a promise when everything is ready.
+   *
+   * @returns {Promise}
+   */
+  initialize() {
+    return new Promise((resolve, reject) => {
+      // TELEGRAM
+      // Create a bot that uses 'polling' to fetch new updates
+      this.telegramBot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, {polling: true});
+      console.log('Telegram Bot Ready');
 
 
 
-    // DISCORD
-    this.discordBot = new Discord.Client();
+      // DISCORD
+      this.discordBot = new Discord.Client();
 
-    this.discordBot.once('ready', e => {
-      console.log('Discord Bot Ready');
+      this.discordBot.once('ready', e => {
+        console.log('Discord Bot Ready');
+
+        // Store all systemChannelIDs in the botInfos
+        this.discordBot.guilds.forEach(guild => {
+          if (guild.systemChannelID) {
+            this.botInfos.discord.mainChatIds.add(guild.systemChannelID);
+          }
+        });
+
+        resolve();
+      });
+
+      this.discordBot.login(process.env.DISCORD_BOT_TOKEN);
     });
-
-    this.discordBot.login(process.env.DISCORD_BOT_TOKEN);
   }
 
 

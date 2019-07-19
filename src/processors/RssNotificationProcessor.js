@@ -15,14 +15,18 @@ class RssNotificationProcessor extends Processor {
     // Save chat ids of messages in this session in the temp storage so that the requests dont have to go against the database on every message
     self.chatTempStorage = [];
 
-    self.setupCronjob();
-
-    self.bot.on('text', msg => {
-      if (self.chatTempStorage.indexOf(msg.chat.id) === -1) {
-        self.registerChat(msg.chat.id);
-        self.chatTempStorage.push(msg.chat.id);
+    // On every message, check if the channel of the message is saved in the database. If not: Add it.
+    self.bot.onText(msg => {
+      if (msg.bot.id === 'telegram') { // Only store telegram channels. On discord we use the guilds systemchannel setting.
+        if (self.chatTempStorage.indexOf(msg.chatId) === -1) {
+          self.registerChat(msg.chatId);
+          self.chatTempStorage.push(msg.chatId);
+        }
       }
     });
+
+
+    self.setupCronjob();
   }
 
   setupCronjob() {
@@ -79,13 +83,37 @@ class RssNotificationProcessor extends Processor {
     let self = this;
     console.log('notify about a new episode');
 
-    Chat.find().then((chats) => {
-      chats.forEach(chat => {
-        self.bot.sendMessage(chat.chatId, `Eine neue Folge ist raus:
+    let targets = new Set();
+
+    // Add discord mainChatIds to targets
+    this.bot.botInfos.discord.mainChatIds.forEach(chatId => {
+      targets.add({
+        bot: 'discord',
+        chatId: chatId,
+      });
+    });
+
+    // Add telegram chats to targets
+    const addTelegramChats = () =>{
+      return Chat.find().then((chats) => {
+        chats.forEach(chat => {
+          targets.add({
+              bot: 'telegram',
+              chatId: chat.chatId,
+          });
+        });
+      });
+    };
+
+    addTelegramChats()
+      .then(() => {
+        // Send messages to targets
+        targets.forEach(target => {
+          self.bot.sendMessage(target.bot, target.chatId, `Eine neue Folge ist raus:
 ${item.link}
 #ghwfolge`);
-      })
-    });
+        });
+      });
   }
 
   registerChat(chatId) {
