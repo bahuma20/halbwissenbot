@@ -4,16 +4,15 @@ class ChiaProcessor extends Processor {
 
   constructor(bot) {
     super(bot);
-    let self = this;
 
-    self.bot.on('text', msg => {
-      self.onText(msg);
-    })
+    this.bot.onText(msg => {
+      this.onText(msg);
+    });
   }
 
   onText(msg) {
     if (this.shouldReply(msg) && this.checkChia(msg.text)) {
-      this.bot.sendMessage(msg.chat.id, 'SUPERFOOD');
+      this.bot.sendMessage(msg.bot.id, msg.chatId, 'SUPERFOOD');
     }
   }
 

@@ -83,7 +83,7 @@ const addProcessors = () => {
   return new Promise((resolve, reject) => {
 
     new GreetNewUserProcessor(bot);
-    // new ChiaProcessor(bot);
+    new ChiaProcessor(bot);
     // new ChiaImageProcessor(bot);
     // new MemberCountProcessor(bot);
     // new GhwKarteProcessor(bot);
