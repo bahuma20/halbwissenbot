@@ -16,7 +16,7 @@ Ein Chatbot für die [Telegram-Gruppe](https://t.me/halbwissencast) und den [Dis
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 - [ ] Twitter Integration
 - [ ] Facebook Integration
-- [ ] Benachrichtigt über Live Streams auf dem Youtube Kanal
+- [ ] Benachrichtigt über Live Streams auf dem Gefährliches Halbwissen Youtube Kanal
 - [ ] Neueste Folgen im Subreddit posten
 - [x] /tirade
 
@@ -37,7 +37,7 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 - `TELEGRAM_BOT_USERNAME` (Wird für commands benötigt)
 - `DISCORD_BOT_TOKEN` (Client secret - Gibts im Developer Bereich)
 - `DISCORD_CLIENT_ID` (Gibts im Developer Bereich)
-- `GOOGLE_MAPS_API_KEY` Dazu ein Projekt in der Google Developer Console anlegen und die Geocoding API aktivieren)
+- `GOOGLE_MAPS_API_KEY` (Dazu ein Projekt in der Google Developer Console anlegen und die Geocoding API aktivieren)
 - `OCR_SPACE_API_KEY` (Wird benötigt für Chia in Bildern)
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)
 - `NTBA_FIX_319` (Temporary fix to prevent some lib errors. Should be gone when telegram-bot-api ist in v1)
@@ -45,3 +45,5 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 - `REDDIT_CLIENT_SECRET`
 - `REDDIT_USERNAME`
 - `REDDIT_PASSWORD`
+- `YOUTUBE_CHANNEL_ID` (ID des Youtube Channels)
+- `YOUTUBE_API_KEY` (Dazu ein Projekt in der Google Developer Console anlegen und die Youtube Data API aktivieren)

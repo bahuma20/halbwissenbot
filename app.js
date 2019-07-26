@@ -13,6 +13,7 @@ const AnswerProcessor = require('./src/processors/AnswerProcessor');
 const ExpelliarmusProcessor = require('./src/processors/ExpelliarmusProcessor');
 const RandomMessageProcessor = require('./src/processors/RandomMessageProcessor');
 const TiradeProcessor = require('./src/processors/TiradeProcessor');
+const YoutubeFeedProcessor = require('./src/processors/YoutubeFeedProcessor');
 
 const GhwKarte = require('./src/services/GhwKarte');
 
@@ -92,6 +93,7 @@ const addProcessors = () => {
     new ExpelliarmusProcessor(bot);
     new RandomMessageProcessor(bot);
     new TiradeProcessor(bot);
+    new YoutubeFeedProcessor(bot);
 
     resolve();
   });
