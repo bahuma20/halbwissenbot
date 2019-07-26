@@ -12,17 +12,7 @@ class RssNotificationProcessor extends Processor {
 
     let self = this;
 
-    // Save chat ids of messages in this session in the temp storage so that the requests dont have to go against the database on every message
-    self.chatTempStorage = [];
-
     self.setupCronjob();
-
-    self.bot.on('text', msg => {
-      if (self.chatTempStorage.indexOf(msg.chat.id) === -1) {
-        self.registerChat(msg.chat.id);
-        self.chatTempStorage.push(msg.chat.id);
-      }
-    });
   }
 
   setupCronjob() {
@@ -79,29 +69,15 @@ class RssNotificationProcessor extends Processor {
     let self = this;
     console.log('notify about a new episode');
 
-    Chat.find().then((chats) => {
-      chats.forEach(chat => {
-        self.bot.sendMessage(chat.chatId, `Eine neue Folge ist raus:
+    this.bot.getAllChats()
+      .then(targets => {
+        // Send messages to targets
+        targets.forEach(target => {
+          self.bot.sendMessage(target.bot, target.chatId, `Eine neue Folge ist raus:
 ${item.link}
 #ghwfolge`);
-      })
-    });
-  }
-
-  registerChat(chatId) {
-    console.log('check if should register ' + chatId);
-    let query = Chat.where({chatId: chatId});
-
-    // Check if this group is already in the database and if not, add it.
-    query.findOne((err, chat) => {
-      if (err) console.log(err);
-
-      if (chat === null) {
-        console.log('Register new chat ' + chatId);
-        let chat = new Chat({chatId: chatId});
-        chat.save();
-      }
-    });
+        });
+      });
   }
 }
 

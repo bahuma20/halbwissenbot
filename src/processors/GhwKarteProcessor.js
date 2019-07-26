@@ -5,42 +5,26 @@ class GhwKarteProcessor extends Processor {
 
   constructor(bot) {
     super(bot);
-    let self = this;
-    self.ghwKarte = new GhwKarte();
-    self.karteURL = 'https://halbwissenbot.mybluemix.net';
 
-    self.bot.onText(/\/ghwkarte$/, function(msg) {
-      self.bot.sendMessage(msg.chat.id, `Die #ghwkarte findest du auf ${self.karteURL}
+    this.ghwKarte = new GhwKarte();
+    this.karteURL = 'https://halbwissenbot.mybluemix.net';
+
+    this.bot.onCommand('ghwkarte', msg => {
+      if (msg.parameters === '') {
+
+        this.bot.sendMessage(msg.bot.id, msg.chatId, `Die #ghwkarte findest du auf ${this.karteURL}
 Falls du deinen Standort auch zur #ghwkarte hinzufügen möchtest verwende "/ghwkarte ORT"`);
-    });
-    
-    // Todo: Don't repeat code 
-    self.bot.onText(/\/ghwkarte@halbwissenbot$/, function(msg) {
-      self.bot.sendMessage(msg.chat.id, `Die #ghwkarte findest du auf ${self.karteURL}
-Falls du deinen Standort auch zur #ghwkarte hinzufügen möchtest verwende "/ghwkarte ORT"`);
-    });
-    
-    
 
-    self.bot.onText(/\/ghwkarte (.+)/, function (msg, match) {
-      let location = match[1];
+      } else {
 
-      self.ghwKarte.addEntryWithGeocoding(location, location)
-        .then(entry => {
-          self.bot.sendMessage(msg.chat.id, `Dein Standort wurde zur #ghwkarte hinzugefügt.
-${self.karteURL}`);
-        }).catch(error => console.log(error));
-    });
-    
-    // Todo: Don't repeat code 
-    self.bot.onText(/\/ghwkarte@halbwissenbot (.+)/, function (msg, match) {
-      let location = match[1];
+        let location = msg.parameters;
 
-      self.ghwKarte.addEntryWithGeocoding(location, location)
-        .then(entry => {
-          self.bot.sendMessage(msg.chat.id, `Dein Standort wurde zur #ghwkarte hinzugefügt.
-${self.karteURL}`);
-        }).catch(error => console.log(error));
+        this.ghwKarte.addEntryWithGeocoding(location, location)
+          .then(entry => {
+            this.bot.sendMessage(msg.bot.id, msg.chatId, `Dein Standort wurde zur #ghwkarte hinzugefügt.
+${this.karteURL}`);
+          }).catch(error => console.error(error));
+      }
     });
   }
 }

@@ -1,9 +1,9 @@
 # Halbwissen Bot
 
-Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
+Ein Chatbot für die [Telegram-Gruppe](https://t.me/halbwissencast) und den [Discord Channel](https://discord.gg/rtddE32) des Podcasts "Gefährliches Halbwissen".
 
 ## Funktionen
-- [x] Chia => SUPERFOOD (inkl. Bilder)
+- [x] Chia => SUPERFOOD [(inkl. Bilder) <-- Geht gerade nicht]
 - [x] Automatische Begrüßung mit einer netten Beleidigung
 - [ ] Fragt nach einer Tätigkeit in der Automobilbranche
 - [x] Teilt mit wenn eine runde Zahl / Schnapszahl der Anzahl der Mitglieder erreicht wurde
@@ -16,6 +16,7 @@ Ein Chatbot für die Telegram-Gruppe "Gefährliches Halbwissen".
 - [ ] Sagt die Frauenquote (Das wird aber schwierig zu realisieren weil man von den Benutzern kein Geschlecht auslesen kann...)
 - [ ] Twitter Integration
 - [ ] Facebook Integration
+- [ ] Benachrichtigt über Live Streams auf dem Youtube Kanal
 - [ ] Neueste Folgen im Subreddit posten
 - [x] /tirade
 
@@ -32,9 +33,12 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 
 
 ## Environment Variables
-- `TELEGRAM_BOT_TOKEN`
-- `GOOGLE_MAPS_API_KEY`
-- `OCR_SPACE_API_KEY`
+- `TELEGRAM_BOT_TOKEN` (Vom @botfather)
+- `TELEGRAM_BOT_USERNAME` (Wird für commands benötigt)
+- `DISCORD_BOT_TOKEN` (Client secret - Gibts im Developer Bereich)
+- `DISCORD_CLIENT_ID` (Gibts im Developer Bereich)
+- `GOOGLE_MAPS_API_KEY` Dazu ein Projekt in der Google Developer Console anlegen und die Geocoding API aktivieren)
+- `OCR_SPACE_API_KEY` (Wird benötigt für Chia in Bildern)
 - `MONGODB_CONNECT_STRING` (mongodb://user:password@host:port/name)
 - `NTBA_FIX_319` (Temporary fix to prevent some lib errors. Should be gone when telegram-bot-api ist in v1)
 - `REDDIT_CLIENT_ID`
