@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const Discord = require('discord.js');
+const Chat = require('../model/Chat');
 
 class BotProxy {
 
@@ -59,6 +60,8 @@ class BotProxy {
       });
 
       this.discordBot.login(process.env.DISCORD_BOT_TOKEN);
+
+      this.startChatRegistration();
     });
   }
 
@@ -216,6 +219,13 @@ class BotProxy {
     }
   }
 
+  /**
+   * Get the amount of members in a chat / guild
+   *
+   * @param bot ID of the bot
+   * @param chatId ID of the chat
+   * @returns {Promise}
+   */
   getChatMembersCount(bot, chatId) {
     return new Promise((resolve, reject) => {
       if (bot === 'telegram') {
@@ -227,6 +237,77 @@ class BotProxy {
       if (bot === 'discord') {
         let channel = this.discordBot.channels.find('id', chatId);
         resolve(channel.guild.memberCount);
+      }
+    });
+  }
+
+
+  /**
+   * Returns a list of all chats where the bot is enabled.
+   * The list is an array of objects which have the keys bot and chatId
+   *
+   * @returns {Promise}
+   */
+  getAllChats() {
+    return new Promise((resolve, reject) => {
+      let targets = new Set();
+
+      // Add discord mainChatIds to targets
+      this.botInfos.discord.mainChatIds.forEach(chatId => {
+        targets.add({
+          bot: 'discord',
+          chatId: chatId,
+        });
+      });
+
+      // Add telegram chats to targets
+      const addTelegramChats = () =>{
+        return Chat.find().then((chats) => {
+          chats.forEach(chat => {
+            targets.add({
+              bot: 'telegram',
+              chatId: chat.chatId,
+            });
+          });
+        });
+      };
+
+      addTelegramChats()
+        .then(() => {
+          resolve(targets);
+        });
+    });
+  }
+
+  /**
+   * Listens on telegram texts and saves their chatIds to the database.
+   * This is needed because the telegram api doesn't allow to get all chats in which the bot is added.
+   */
+  startChatRegistration() {
+    // Save chat ids of messages in this session in the temp storage so that the requests dont have to go against the database on every message
+    let chatTempStorage = [];
+
+    // On every message, check if the channel of the message is saved in the database. If not: Add it.
+    this.onText(msg => {
+      if (msg.bot.id === 'telegram') { // Only store telegram channels. On discord we use the guilds systemchannel setting.
+        if (chatTempStorage.indexOf(msg.chatId) === -1) {
+          // Register Chat
+          console.log('check if should register ' + msg.chatId);
+          let query = Chat.where({chatId: msg.chatId});
+
+          // Check if this group is already in the database and if not, add it.
+          query.findOne((err, chat) => {
+            if (err) console.log(err);
+
+            if (chat === null) {
+              console.log('Register new chat ' + msg.chatId);
+              let chat = new Chat({chatId: msg.chatId});
+              chat.save();
+            }
+          });
+
+          chatTempStorage.push(msg.chatId);
+        }
       }
     });
   }
