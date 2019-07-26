@@ -85,7 +85,7 @@ const addProcessors = () => {
     new GreetNewUserProcessor(bot);
     new ChiaProcessor(bot);
     // new ChiaImageProcessor(bot);
-    // new MemberCountProcessor(bot);
+    new MemberCountProcessor(bot);
     new GhwKarteProcessor(bot);
     new RssNotificationProcessor(bot);
     new AnswerProcessor(bot);
