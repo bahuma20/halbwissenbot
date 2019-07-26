@@ -89,7 +89,7 @@ const addProcessors = () => {
     // new GhwKarteProcessor(bot);
     new RssNotificationProcessor(bot);
     new AnswerProcessor(bot);
-    // new ExpelliarmusProcessor(bot);
+    new ExpelliarmusProcessor(bot);
     // new RandomMessageProcessor(bot);
     // new TiradeProcessor(bot);
 

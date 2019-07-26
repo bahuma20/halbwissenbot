@@ -4,14 +4,13 @@ const Toolbox = require('../Toolbox');
 class ExpelliarmusProcessor extends Processor {
   constructor(bot) {
     super(bot);
-    let self = this;
 
-    self.answers = require('../../texts/expelliarmus.json');
+    this.answers = require('../../texts/expelliarmus.json');
 
-
-    self.bot.onText(/\/expelliarmus/, msg => {
-      if (self.shouldReply(msg)) {
-        self.bot.sendMessage(msg.chat.id, Toolbox.randomValue(self.answers));
+    this.bot.onCommand('expelliarmus', msg => {
+      console.log('there was a expelliarmus command');
+      if (this.shouldReply(msg)) {
+        this.bot.sendMessage(msg.bot.id, msg.chatId, Toolbox.randomValue(this.answers));
       }
     });
   }
