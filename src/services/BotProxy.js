@@ -215,6 +215,21 @@ class BotProxy {
         break;
     }
   }
+
+  getChatMembersCount(bot, chatId) {
+    return new Promise((resolve, reject) => {
+      if (bot === 'telegram') {
+        this.telegramBot.getChatMembersCount(chatId).then(count => {
+          resolve(count);
+        });
+      }
+
+      if (bot === 'discord') {
+        let channel = this.discordBot.channels.find('id', chatId);
+        resolve(channel.guild.memberCount);
+      }
+    });
+  }
 }
 
 module.exports = BotProxy;
