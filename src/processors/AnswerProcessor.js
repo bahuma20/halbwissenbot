@@ -10,7 +10,7 @@ class AnswerProcessor extends Processor {
     self.answers = require('../../texts/answers.json');
 
     self.bot.onText(msg => {
-      if (msg.text.indexOf('@' + msg.bot.username) !== -1 && self.shouldReply(msg)) {
+      if ((msg.text.startsWith('@' + msg.bot.username) || msg.text.indexOf(' @' + msg.bot.username) !== -1) && self.shouldReply(msg)) {
         self.logMessage(msg);
         self.bot.sendMessage(msg.bot.id, msg.chatId, Toolbox.randomValue(self.answers));
       }
