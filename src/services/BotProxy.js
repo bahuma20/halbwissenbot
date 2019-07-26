@@ -9,11 +9,13 @@ class BotProxy {
         id: 'telegram',
         username: process.env.TELEGRAM_BOT_USERNAME,
         mainChatIds: new Set(), // a list of chat ids which are considered as the main chat / channel
+        commandPrefix: '/',
       },
       discord: {
         id: 'discord',
         username: process.env.DISCORD_CLIENT_ID,
         mainChatIds: new Set(), // a list of chat ids which are considered as the main chat / channel
+        commandPrefix: '/',
       },
     };
 
@@ -36,7 +38,9 @@ class BotProxy {
       this.telegramBot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, {polling: true});
       console.log('Telegram Bot Ready');
 
-
+      this.telegramBot.on('polling_error', (error) => {
+        console.error(error);  // => 'EFATAL'
+      });
 
       // DISCORD
       this.discordBot = new Discord.Client();
@@ -86,6 +90,70 @@ class BotProxy {
       };
 
       callback(message);
+    });
+  }
+
+
+  /**
+   * Adds an event listener when a command is issued.
+   * The prefix of the command is configured at bot level.
+   *
+   * @param command
+   *   The command (without prefix) on which the callback should be fired.
+   * @param callback
+   *   A function that gets a msg object passed.
+   *   msg.parameters contains all text after the command.
+   *   msg.text is not available.
+   */
+  onCommand(command, callback) {
+    this.telegramBot.on('text', msg => {
+      let text = msg.text;
+      let prefix = this.botInfos.telegram.commandPrefix;
+      let username = this.botInfos.telegram.username;
+
+      let searchStrings = [
+        prefix + command + '@' + username,
+        prefix + command,
+      ];
+
+      let alreadySent = false;
+
+      searchStrings.forEach(searchString => {
+        if (!alreadySent && text.startsWith(searchString)) {
+          let parameters = text.replace(searchString, '');
+          parameters = parameters.trim();
+
+          let message = {
+            bot: this.botInfos.telegram,
+            chatId: msg.chat.id,
+            parameters: parameters,
+            date: msg.date,
+          };
+
+          alreadySent = true;
+
+          callback(message);
+        }
+      });
+    });
+
+    this.discordBot.on('message', msg => {
+      let text = msg.content;
+      let prefix = this.botInfos.discord.commandPrefix;
+
+      if (text.startsWith(prefix + command)) {
+        let parameters = text.replace(prefix + command, '');
+        parameters = parameters.trim();
+
+        let message = {
+          bot: this.botInfos.discord,
+          chatId: msg.channel.id,
+          parameters: parameters,
+          date: Math.round(msg.createdTimestamp / 1000),
+        };
+
+        callback(message);
+      }
     });
   }
 
