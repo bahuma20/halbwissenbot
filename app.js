@@ -90,7 +90,7 @@ const addProcessors = () => {
     new RssNotificationProcessor(bot);
     new AnswerProcessor(bot);
     new ExpelliarmusProcessor(bot);
-    // new RandomMessageProcessor(bot);
+    new RandomMessageProcessor(bot);
     // new TiradeProcessor(bot);
 
     resolve();
