@@ -35,7 +35,7 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 ## Environment Variables
 - `TELEGRAM_BOT_TOKEN` (Vom @botfather)
 - `TELEGRAM_BOT_USERNAME` (Wird für commands benötigt)
-- `DISCORD_BOT_TOKEN` (Gibts im Developer Bereich)
+- `DISCORD_BOT_TOKEN` (Client secret - Gibts im Developer Bereich)
 - `DISCORD_CLIENT_ID` (Gibts im Developer Bereich)
 - `GOOGLE_MAPS_API_KEY` Dazu ein Projekt in der Google Developer Console anlegen und die Geocoding API aktivieren)
 - `OCR_SPACE_API_KEY` (Wird benötigt für Chia in Bildern)
