@@ -5,15 +5,24 @@ const Toolbox = require('../Toolbox');
 class AnswerProcessor extends Processor {
   constructor(bot) {
     super(bot);
-    let self = this;
 
-    self.answers = require('../../texts/answers.json');
+    this.answers = require('../../texts/answers.json');
 
-    self.bot.onText(msg => {
-      if ((msg.text.startsWith('@' + msg.bot.username) || msg.text.indexOf(' @' + msg.bot.username) !== -1) && self.shouldReply(msg)) {
-        self.logMessage(msg);
-        self.bot.sendMessage(msg.bot.id, msg.chatId, Toolbox.randomValue(self.answers));
-      }
+    this.bot.onText(msg => {
+      let searchStrings = [
+        '<@' + msg.bot.username + '>',
+        '@' + msg.bot.username,
+      ];
+
+      let alreadyAnswered = false;
+
+      searchStrings.forEach(searchString => {
+        if (!alreadyAnswered && (msg.text.startsWith(searchString) || msg.text.indexOf(' ' + searchString) !== -1) && this.shouldReply(msg)) {
+          alreadyAnswered = true;
+          this.logMessage(msg);
+          this.bot.sendMessage(msg.bot.id, msg.chatId, Toolbox.randomValue(this.answers));
+        }
+      });
     });
   }
 
