@@ -5,9 +5,8 @@ const snoowrap = require('snoowrap');
 class TiradeProcessor extends Processor {
   constructor(bot) {
     super(bot);
-    let self = this;
 
-    self.reddit = new snoowrap({
+    this.reddit = new snoowrap({
       userAgent: 'nodejs:io.bahuma.halbwissenbot:1.0 (by /u/bahuma20)',
       clientId: 'FTh4CuD5ZiqmfA',
       clientSecret: 'my-1nnemFe9t1rhSlZXiNGzpNfo',
@@ -15,12 +14,8 @@ class TiradeProcessor extends Processor {
       password: 'RRrwReRh7'
     });
 
-    self.bot.onText(/\/tirade$/, function(msg) {
-      self.respond(msg);
-    });
-
-    self.bot.onText(/\/tirade@halbwissenbot$/, function(msg) {
-      self.respond(msg);
+    this.bot.onCommand('tirade', (msg) => {
+      this.respond(msg);
     });
   }
 
@@ -37,10 +32,8 @@ class TiradeProcessor extends Processor {
   }
 
   respond(msg) {
-    let self = this;
-
     if (this.shouldReply(msg)) {
-      self.reddit.search({
+      this.reddit.search({
         query: 'tirade',
         subreddit: 'de',
         sort: 'top'
@@ -48,7 +41,7 @@ class TiradeProcessor extends Processor {
         let submission = Toolbox.randomValue(submissions);
         let response = `${submission.title}
 https://reddit.com${submission.permalink}`;
-        self.bot.sendMessage(msg.chat.id, response);
+        this.bot.sendMessage(msg.bot.id, msg.chatId, response);
       });
     }
   }

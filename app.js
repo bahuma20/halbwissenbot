@@ -91,7 +91,7 @@ const addProcessors = () => {
     new AnswerProcessor(bot);
     new ExpelliarmusProcessor(bot);
     new RandomMessageProcessor(bot);
-    // new TiradeProcessor(bot);
+    new TiradeProcessor(bot);
 
     resolve();
   });
