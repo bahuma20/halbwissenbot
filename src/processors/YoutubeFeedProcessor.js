@@ -15,9 +15,9 @@ class YoutubeFeedProcessor extends Processor {
   setupCronjob() {
     let self = this;
 
-    self.checkForLivestream();
+//     self.checkForLivestream();
 
-    let job = new CronJob('0 */1 * * * *', () => {
+    let job = new CronJob('0 */15 * * * *', () => {
       self.checkForLivestream();
     }, null, true, 'Europe/Berlin');
   }
