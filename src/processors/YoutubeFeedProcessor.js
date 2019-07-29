@@ -34,6 +34,11 @@ class YoutubeFeedProcessor extends Processor {
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
+        if (!data.hasOwnProperty('items')) {
+          console.log(data);
+          return;
+        }
+      
         if (data.items.length > 0) {
           let videoId = data.items[0].id.videoId;
           console.log('found live stream with video id ' + videoId);
