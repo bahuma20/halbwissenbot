@@ -47,3 +47,4 @@ Einfach hier auf Github eine dieser Dateien bearbeiten:
 - `REDDIT_PASSWORD`
 - `YOUTUBE_CHANNEL_ID` (ID des Youtube Channels)
 - `YOUTUBE_API_KEY` (Dazu ein Projekt in der Google Developer Console anlegen und die Youtube Data API aktivieren)
+- `PUBLIC_URL` (Die Domain unter der der Webserver des Bots erreichbar ist. Ohne Trailing slash.)

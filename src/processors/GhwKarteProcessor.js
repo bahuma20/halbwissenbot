@@ -7,7 +7,7 @@ class GhwKarteProcessor extends Processor {
     super(bot);
 
     this.ghwKarte = new GhwKarte();
-    this.karteURL = 'https://halbwissenbot.mybluemix.net';
+    this.karteURL = process.env.PUBLIC_URL;
 
     this.bot.onCommand('ghwkarte', msg => {
       if (msg.parameters === '') {
