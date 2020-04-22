@@ -36,7 +36,10 @@ const dbConnect = () => {
     });
 
     // Connect to database;
-    mongoose.connect(process.env.MONGODB_CONNECT_STRING);
+    mongoose.connect(process.env.MONGODB_CONNECT_STRING, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   })
 };
 
