@@ -74,7 +74,7 @@ const startWebserver = () => {
 
     app.use('/', express.static('public'));
 
-    app.listen(process.env.PORT || 3000, function () {
+    app.listen(process.env.PORT || 3000, '0.0.0.0', function () {
       console.log('Webserver running on port 3000!');
       resolve();
     });
