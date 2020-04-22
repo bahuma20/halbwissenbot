@@ -5,8 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "bower": "^1.8.8",
-    "cron": "^1.7.1",
-    "datauri": "^1.1.0",
+    "cron": "^1.8.2",
+    "datauri": "^2.0.0",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "download-file": "^0.1.5",
@@ -15,8 +15,8 @@
     "mongoose": "^5.7.5",
     "node-fetch": "^1.7.3",
     "node-telegram-bot-api": "^0.30.0",
-    "request": "^2.88.0",
-    "snoowrap": "^1.15.2"
+    "request": "^2.88.2",
+    "snoowrap": "^1.21.0"
   },
   "engines": {
     "node": "^10.14.1"

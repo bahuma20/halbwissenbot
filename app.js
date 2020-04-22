@@ -36,9 +36,7 @@ const dbConnect = () => {
     });
 
     // Connect to database;
-    mongoose.connect(process.env.MONGODB_CONNECT_STRING, {
-      useMongoClient: true
-    });
+    mongoose.connect(process.env.MONGODB_CONNECT_STRING);
   })
 };
 
