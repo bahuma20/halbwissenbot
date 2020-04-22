@@ -7,7 +7,7 @@
     "bower": "^1.8.8",
     "cron": "^1.7.1",
     "datauri": "^1.1.0",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "download-file": "^0.1.5",
     "express": "^4.17.1",

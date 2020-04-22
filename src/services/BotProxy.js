@@ -50,7 +50,7 @@ class BotProxy {
         console.log('Discord Bot Ready');
 
         // Store all systemChannelIDs in the botInfos
-        this.discordBot.guilds.forEach(guild => {
+        this.discordBot.guilds.cache.forEach(guild => {
           if (guild.systemChannelID) {
             this.botInfos.discord.mainChatIds.add(guild.systemChannelID);
           }
@@ -209,7 +209,7 @@ class BotProxy {
         break;
 
       case 'discord':
-        let channel = this.discordBot.channels.find('id', chatId);
+        let channel = this.discordBot.channels.cache.find(channel => channel.id === chatId);
 
         if (channel) {
           channel.send(text);
@@ -235,7 +235,7 @@ class BotProxy {
       }
 
       if (bot === 'discord') {
-        let channel = this.discordBot.channels.find('id', chatId);
+        let channel = this.discordBot.channels.cache.find(channel => channel.id === chatId);
         resolve(channel.guild.memberCount);
       }
     });
