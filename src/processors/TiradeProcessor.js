@@ -8,10 +8,10 @@ class TiradeProcessor extends Processor {
 
     this.reddit = new snoowrap({
       userAgent: 'nodejs:io.bahuma.halbwissenbot:1.0 (by /u/bahuma20)',
-      clientId: 'FTh4CuD5ZiqmfA',
-      clientSecret: 'my-1nnemFe9t1rhSlZXiNGzpNfo',
-      username: 'halbwissenbot',
-      password: 'RRrwReRh7'
+      clientId: process.env.REDDIT_CLIENT_ID,
+      clientSecret: process.env.REDDIT_CLIENT_SECRET,
+      username: process.env.REDDIT_USERNAME,
+      password: process.env.REDDIT_PASSWORD
     });
 
     this.bot.onCommand('tirade', (msg) => {
